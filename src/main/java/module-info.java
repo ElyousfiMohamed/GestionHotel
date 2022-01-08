@@ -9,6 +9,7 @@ module main.gestionhotel {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens main.gestionhotel to javafx.fxml;
     exports main.gestionhotel;
