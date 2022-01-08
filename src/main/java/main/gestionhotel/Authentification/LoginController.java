@@ -23,6 +23,7 @@ public class LoginController {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("Register.fxml"));
             Scene scene = new Scene(loader.load());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("S'inscrire");
