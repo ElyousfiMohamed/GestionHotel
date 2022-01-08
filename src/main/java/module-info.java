@@ -13,4 +13,6 @@ module main.gestionhotel {
 
     opens main.gestionhotel to javafx.fxml;
     exports main.gestionhotel;
+    exports main.gestionhotel.Authentification;
+    opens main.gestionhotel.Authentification to javafx.fxml;
 }
