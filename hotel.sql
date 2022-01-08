@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 08 jan. 2022 à 12:55
+-- Généré le : sam. 08 jan. 2022 à 13:03
 -- Version du serveur :  10.4.19-MariaDB
 -- Version de PHP : 8.0.6
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `chambre` (
   `ID_C` int(11) NOT NULL,
   `ID_T` int(11) NOT NULL,
-  `NUMCHAMBRE` int(11) DEFAULT NULL,
-  `DESCCHAMBRE` text DEFAULT NULL,
+  `NUM_CHAMBRE` int(11) DEFAULT NULL,
+  `DESC_CHAMBRE` text DEFAULT NULL,
   `DISPO` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -98,11 +98,12 @@ CREATE TABLE `gerer` (
 
 CREATE TABLE `reservation` (
   `ID_R` int(11) NOT NULL,
-  `NUMERORSV` int(11) DEFAULT NULL,
-  `NOMBREPER` int(11) DEFAULT NULL,
-  `NOMBRECH` int(11) DEFAULT NULL,
-  `DATEARIV` date DEFAULT NULL,
-  `DATESORT` date DEFAULT NULL
+  `NUMERO_RSV` int(11) DEFAULT NULL,
+  `NOMBRE_PER` int(11) DEFAULT NULL,
+  `NOMBRE_CH` int(11) DEFAULT NULL,
+  `DATE_ARIV` date DEFAULT NULL,
+  `DATE_SORT` date DEFAULT NULL,
+  `TOTAL_RSV` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
