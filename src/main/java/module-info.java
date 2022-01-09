@@ -15,4 +15,7 @@ module main.gestionhotel {
     exports main.gestionhotel;
     exports main.gestionhotel.Authentification;
     opens main.gestionhotel.Authentification to javafx.fxml;
+
+    opens main.gestionhotel.ClassesPersistants to javafx.base;
+
 }

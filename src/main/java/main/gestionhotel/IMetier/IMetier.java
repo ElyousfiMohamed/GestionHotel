@@ -7,6 +7,6 @@ import java.util.List;
 public interface IMetier {
     void addEmploye(Employe p);
     List<Employe> getAllEmployes();
-    void delProfesseur(int id);
-    List<Employe> searchProf(String keyWord);
+    void delEmploye(int id);
+    List<Employe> searchEmp(String keyWord);
 }

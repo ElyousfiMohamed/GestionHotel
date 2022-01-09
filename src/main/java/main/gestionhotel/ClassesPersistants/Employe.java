@@ -24,6 +24,16 @@ public class Employe {
         this.fonction = fonction;
     }
 
+    public Employe(int id, String cin, String nom, String prenom, String telephone, String email, String fonction) {
+        this.id = id;
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.email = email;
+        this.fonction = fonction;
+    }
+
     public Employe(String cin, String nom, String prenom, String telephone, String email, String password, String fonction) {
         this.cin = cin;
         this.nom = nom;
@@ -35,35 +45,35 @@ public class Employe {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getCin() {
-        return cin;
+        return this.cin;
     }
 
     public String getNom() {
-        return nom;
+        return this.nom;
     }
 
     public String getPrenom() {
-        return prenom;
+        return this.prenom;
     }
 
     public String getTelephone() {
-        return telephone;
+        return this.telephone;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public String getFonction() {
-        return fonction;
+        return this.fonction;
     }
 
     public void setId(int id) {
