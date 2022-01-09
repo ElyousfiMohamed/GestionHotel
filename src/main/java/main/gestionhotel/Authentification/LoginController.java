@@ -44,7 +44,7 @@ public class LoginController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("S'inscrire");
             stage.setScene(scene);
-            stage.getIcons().add(new Image("https://cdn-icons-png.flaticon.com/512/2933/2933772.png"));
+            stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
             stage.show();
         }catch (Exception e) {
             e.printStackTrace();

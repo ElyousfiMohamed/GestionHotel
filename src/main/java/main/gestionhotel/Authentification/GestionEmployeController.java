@@ -125,7 +125,7 @@ public class GestionEmployeController implements Initializable {
             Scene scene = new Scene(loader.load());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Nouveau employé");
-            stage.getIcons().add(new Image("https://cdn-icons-png.flaticon.com/512/2933/2933772.png"));
+            stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
             stage.setScene(scene);
             stage.show();
         }catch (Exception e) {
