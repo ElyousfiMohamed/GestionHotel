@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 08 jan. 2022 à 13:03
+-- Généré le : dim. 09 jan. 2022 à 11:46
 -- Version du serveur :  10.4.19-MariaDB
 -- Version de PHP : 8.0.6
 
@@ -79,6 +79,13 @@ CREATE TABLE `employe` (
   `PASSWORD` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `employe`
+--
+
+INSERT INTO `employe` (`ID_EMP`, `CIN_E`, `NOM_EMP`, `PRENOM_EMP`, `NUMTEL`, `EMAIL_EMP`, `FONCTION`, `PASSWORD`) VALUES
+(3, 'a', 'a', 'a', 'a', 'a', 'Admin', 'cc175b9c0f1b6a831c399e269772661');
+
 -- --------------------------------------------------------
 
 --
@@ -138,13 +145,15 @@ CREATE TABLE `type_c` (
 -- Index pour la table `chambre`
 --
 ALTER TABLE `chambre`
-  ADD PRIMARY KEY (`ID_C`);
+  ADD PRIMARY KEY (`ID_C`),
+  ADD UNIQUE KEY `NUM_CHAMBRE` (`NUM_CHAMBRE`);
 
 --
 -- Index pour la table `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`ID_CL`);
+  ADD PRIMARY KEY (`ID_CL`),
+  ADD UNIQUE KEY `CIN` (`CIN`,`NUMTEL_CLT`,`EMAIL`) USING HASH;
 
 --
 -- Index pour la table `concerner`
@@ -156,7 +165,9 @@ ALTER TABLE `concerner`
 -- Index pour la table `employe`
 --
 ALTER TABLE `employe`
-  ADD PRIMARY KEY (`ID_EMP`);
+  ADD PRIMARY KEY (`ID_EMP`),
+  ADD UNIQUE KEY `CIN_E` (`CIN_E`,`NUMTEL`,`EMAIL_EMP`) USING HASH,
+  ADD UNIQUE KEY `CIN_E_2` (`CIN_E`,`NUMTEL`,`EMAIL_EMP`) USING HASH;
 
 --
 -- Index pour la table `gerer`
@@ -168,7 +179,8 @@ ALTER TABLE `gerer`
 -- Index pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`ID_R`);
+  ADD PRIMARY KEY (`ID_R`),
+  ADD UNIQUE KEY `NUMERO_RSV` (`NUMERO_RSV`);
 
 --
 -- Index pour la table `reserver`
@@ -180,7 +192,18 @@ ALTER TABLE `reserver`
 -- Index pour la table `type_c`
 --
 ALTER TABLE `type_c`
-  ADD PRIMARY KEY (`ID_T`);
+  ADD PRIMARY KEY (`ID_T`),
+  ADD UNIQUE KEY `INTITULE` (`INTITULE`) USING HASH;
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `employe`
+--
+ALTER TABLE `employe`
+  MODIFY `ID_EMP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
