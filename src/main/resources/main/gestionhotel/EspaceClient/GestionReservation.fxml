@@ -9,17 +9,17 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="418.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.gestionhotel.EspaceClient.GestionClientController">
+<AnchorPane prefHeight="418.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.gestionhotel.EspaceClient.GestionReservationController">
     <children>
         <TableView fx:id="tableView" layoutX="43.0" layoutY="100.0" prefHeight="282.0" prefWidth="550.0">
             <columns>
-                <TableColumn fx:id="id" prefWidth="67.0" text="ID" />
-                <TableColumn fx:id="cin" prefWidth="67.0" text="CIN" />
-                <TableColumn fx:id="nom" prefWidth="78.0" text="NOM" />
-                <TableColumn fx:id="prenom" prefWidth="88.0" text="PRENOM" />
-                <TableColumn fx:id="telephone" prefWidth="75.0" text="TELEPHONE" />
-                <TableColumn fx:id="email" prefWidth="75.0" text="EMAIL" />
-                <TableColumn fx:id="adresse" prefWidth="103.0" text="ADRESSE" />
+                <TableColumn fx:id="ID" prefWidth="67.0" text="ID" />
+                <TableColumn fx:id="NUM_RSV" prefWidth="69.0" text="NUM_RSV" />
+                <TableColumn fx:id="NBR_PRS" prefWidth="87.0" text="NBR_PRS" />
+                <TableColumn fx:id="NBR_CHBR" prefWidth="77.0" text="NBR_CHBR" />
+                <TableColumn fx:id="DATE_ARIV" prefWidth="75.0" text="DATE_ARIV" />
+                <TableColumn fx:id="DATE_SORT" prefWidth="75.0" text="DATE_SORT" />
+                <TableColumn fx:id="TOTAL_RSV" prefWidth="103.0" text="TOTAL_RSV" />
             </columns>
         </TableView>
         <GridPane layoutX="118.0" layoutY="36.0">

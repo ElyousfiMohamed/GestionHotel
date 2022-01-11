@@ -257,7 +257,7 @@ public class IMetierImpl implements IMetier{
         try {
             Statement pstn = conn.createStatement();
             pstn.executeUpdate("UPDATE chambre SET "
-                    + "ID_T  = '" + chambre.getId_type() + "',NUM_CHAMBRE = '"
+                    + "NUM_CHAMBRE = '"
                     + chambre.getNum_chmbr() + "',DESC_CHAMBRE = '"
                     + chambre.getDesq_chmbr() + "',DISPO = '"
                     + chambre.isDispo_chmbr() + "' WHERE ID_EMP = " + chambre.getId_chmbr());
@@ -276,9 +276,8 @@ public class IMetierImpl implements IMetier{
         Connection conn = SingletonConnexionDB.getConnection();
         try {
             Statement pstn = conn.createStatement();
-            pstn.executeUpdate("INSERT INTO `chambre`(`ID_C`, `ID_T`, `NUM_CHAMBRE`, `DESC_CHAMBRE`, `DISPO`) VALUES ('"+
+            pstn.executeUpdate("INSERT INTO `chambre`(`ID_C`, `NUM_CHAMBRE`, `DESC_CHAMBRE`, `DISPO`) VALUES ('"+
                     p.getId_chmbr() + "','"
-                            + p.getId_type() + "','"
                             + p.getNum_chmbr() + "','"
                             + p.getDesq_chmbr() + "','"
                             + p.isDispo_chmbr() + "')");

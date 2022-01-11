@@ -16,52 +16,47 @@ import main.gestionhotel.IMetier.IMetierImpl;
 
 public class LoginController {
 
-    @FXML
-    private Button login;
+  @FXML private Button login;
 
-    @FXML
-    private AnchorPane rootPane;
+  @FXML private AnchorPane rootPane;
 
-    @FXML
-    private TextField email;
+  @FXML private TextField email;
 
-    @FXML
-    private TextField password;
+  @FXML private TextField password;
 
-    @FXML
-    void annuler(ActionEvent event) {
-        Stage stage = (Stage)rootPane.getScene().getWindow();
-        stage.close();
+  @FXML
+  void annuler(ActionEvent event) {
+    Stage stage = (Stage) rootPane.getScene().getWindow();
+    stage.close();
+  }
+
+  @FXML
+  void register(ActionEvent event) {
+    try {
+      Stage stage = new Stage();
+      FXMLLoader loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("Register.fxml"));
+      Scene scene = new Scene(loader.load());
+      stage.initModality(Modality.APPLICATION_MODAL);
+      stage.setTitle("S'inscrire");
+      stage.setScene(scene);
+      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
+      stage.show();
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 
-    @FXML
-    void register(ActionEvent event) {
-        try {
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("Register.fxml"));
-            Scene scene = new Scene(loader.load());
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("S'inscrire");
-            stage.setScene(scene);
-            stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
-            stage.show();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+  @FXML
+  void seConnecter(ActionEvent event) {
+    if (IMetierImpl.connect(this.email.getText(), this.password.getText())) {
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setContentText("Connected");
+      alert.show();
+    } else {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText("Not Connected");
+      alert.show();
     }
-
-    @FXML
-    void seConnecter(ActionEvent event) {
-        if(IMetierImpl.connect(this.email.getText(),this.password.getText())) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setContentText("Connected");
-            alert.show();
-        }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Not Connected");
-            alert.show();
-        }
-    }
-
+  }
 }

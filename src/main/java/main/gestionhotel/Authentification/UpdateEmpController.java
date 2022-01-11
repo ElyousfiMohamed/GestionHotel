@@ -17,63 +17,54 @@ import java.util.ResourceBundle;
 
 public class UpdateEmpController implements Initializable {
 
-    @FXML
-    private AnchorPane rootPane;
+  @FXML private AnchorPane rootPane;
 
-    @FXML
-    private TextField cin;
+  @FXML private TextField cin;
 
-    @FXML
-    private TextField nom;
+  @FXML private TextField nom;
 
-    @FXML
-    private TextField prenom;
+  @FXML private TextField prenom;
 
-    @FXML
-    private TextField telephone;
+  @FXML private TextField telephone;
 
-    @FXML
-    private TextField email;
+  @FXML private TextField email;
 
-    @FXML
-    private RadioButton Admin;
+  @FXML private RadioButton Admin;
 
-    @FXML
-    private ToggleGroup fonction;
+  @FXML private ToggleGroup fonction;
 
-    @FXML
-    private RadioButton Caissier;
+  @FXML private RadioButton Caissier;
 
-    @FXML
-    void annuler(ActionEvent event) {
-        Stage stage = (Stage)rootPane.getScene().getWindow();
-        stage.close();
+  @FXML
+  void annuler(ActionEvent event) {
+    Stage stage = (Stage) rootPane.getScene().getWindow();
+    stage.close();
+  }
+
+  @FXML
+  void modifier(ActionEvent event) {
+    try {
+      IMetier metier = new IMetierImpl();
+      IMetierImpl.employe.setCin(this.cin.getText());
+      IMetierImpl.employe.setNom(this.nom.getText());
+      IMetierImpl.employe.setPrenom(this.prenom.getText());
+      IMetierImpl.employe.setTelephone(this.telephone.getText());
+      IMetierImpl.employe.setEmail(this.email.getText());
+      IMetierImpl.employe.setFonction(((RadioButton) this.fonction.getSelectedToggle()).getText());
+      IMetierImpl.updateEmploye();
+    } catch (Exception ex) {
+      Alert alert = new Alert(Alert.AlertType.WARNING);
+      alert.setContentText(ex.getMessage());
+      alert.show();
     }
+  }
 
-    @FXML
-    void modifier(ActionEvent event) {
-        try {
-            IMetier metier = new IMetierImpl();
-            IMetierImpl.employe.setCin(this.cin.getText());
-            IMetierImpl.employe.setNom(this.nom.getText());
-            IMetierImpl.employe.setPrenom(this.prenom.getText());
-            IMetierImpl.employe.setTelephone(this.telephone.getText());
-            IMetierImpl.employe.setEmail(this.email.getText());
-            IMetierImpl.employe.setFonction(((RadioButton)this.fonction.getSelectedToggle()).getText());
-            IMetierImpl.updateEmploye();
-        } catch (Exception ex) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(ex.getMessage());
-            alert.show();
-        }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.cin.setText(IMetierImpl.employe.getCin());
-        this.nom.setText(IMetierImpl.employe.getNom());
-        this.prenom.setText(IMetierImpl.employe.getPrenom());
-        this.telephone.setText(IMetierImpl.employe.getTelephone());
-        this.email.setText(IMetierImpl.employe.getEmail());
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    this.cin.setText(IMetierImpl.employe.getCin());
+    this.nom.setText(IMetierImpl.employe.getNom());
+    this.prenom.setText(IMetierImpl.employe.getPrenom());
+    this.telephone.setText(IMetierImpl.employe.getTelephone());
+    this.email.setText(IMetierImpl.employe.getEmail());
+  }
 }

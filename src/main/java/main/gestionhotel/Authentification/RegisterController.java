@@ -11,52 +11,48 @@ import main.gestionhotel.IMetier.IMetierImpl;
 
 public class RegisterController {
 
-    @FXML
-    private AnchorPane rootPane;
+  @FXML private AnchorPane rootPane;
 
-    @FXML
-    private TextField cin;
+  @FXML private TextField cin;
 
-    @FXML
-    private TextField nom;
+  @FXML private TextField nom;
 
-    @FXML
-    private TextField prenom;
+  @FXML private TextField prenom;
 
-    @FXML
-    private TextField telephone;
+  @FXML private TextField telephone;
 
-    @FXML
-    private TextField email;
+  @FXML private TextField email;
 
-    @FXML
-    private PasswordField password;
+  @FXML private PasswordField password;
 
-    @FXML
-    private RadioButton Admin;
+  @FXML private RadioButton Admin;
 
-    @FXML
-    private ToggleGroup fonction;
+  @FXML private ToggleGroup fonction;
 
-    @FXML
-    private RadioButton Caissier;
+  @FXML private RadioButton Caissier;
 
+  @FXML
+  void annuler(ActionEvent event) {
+    Stage stage = (Stage) rootPane.getScene().getWindow();
+    stage.close();
+  }
 
-    @FXML
-    void annuler(ActionEvent event) {
-        Stage stage = (Stage)rootPane.getScene().getWindow();
-        stage.close();
+  @FXML
+  void register(ActionEvent event) {
+    try {
+      IMetier metier = new IMetierImpl();
+      Employe e =
+          new Employe(
+              this.cin.getText(),
+              this.nom.getText(),
+              this.prenom.getText(),
+              this.telephone.getText(),
+              this.email.getText(),
+              this.password.getText(),
+              ((RadioButton) this.fonction.getSelectedToggle()).getText());
+      metier.addEmploye(e);
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
-
-    @FXML
-    void register(ActionEvent event) {
-        try {
-            IMetier metier = new IMetierImpl();
-            Employe e = new Employe(this.cin.getText(),this.nom.getText(), this.prenom.getText(),this.telephone.getText(),this.email.getText(),this.password.getText(),((RadioButton)this.fonction.getSelectedToggle()).getText());
-            metier.addEmploye(e);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
+  }
 }
