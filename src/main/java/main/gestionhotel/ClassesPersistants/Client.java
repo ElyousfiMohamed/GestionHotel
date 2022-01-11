@@ -19,6 +19,15 @@ public class Client {
         this.adresse_cl = adresse_cl;
     }
 
+    public Client(String CIN_cl, String nom_cl, String prenom_cl, String email_cl, String numtel_cl, String adresse_cl) {
+        this.CIN_cl = CIN_cl;
+        this.nom_cl = nom_cl;
+        this.prenom_cl = prenom_cl;
+        this.email_cl = email_cl;
+        this.numtel_cl = numtel_cl;
+        this.adresse_cl = adresse_cl;
+    }
+
     public Client() {
 
     }
