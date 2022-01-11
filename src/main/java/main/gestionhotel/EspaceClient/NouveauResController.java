@@ -47,12 +47,8 @@ public class NouveauResController {
     try {
       IMetier metier = new IMetierImpl();
 
-      LocalDate localDate = DATE_ARRV.getValue();
-      Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-      Date date1 = (Date) Date.from(instant);
-      localDate = DATE_SORT.getValue();
-      instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-      Date date2 = (Date) Date.from(instant);
+      java.sql.Date date1 = Date.valueOf(DATE_ARRV.valueProperty().get());
+      java.sql.Date date2 = Date.valueOf(DATE_ARRV.valueProperty().get());
 
       IMetierImpl.reservation.setNum_res(Integer.parseInt(this.NUM_RSV.getText()));
       IMetierImpl.reservation.setNum_pers(Integer.parseInt(this.NBR_PRS.getText()));
