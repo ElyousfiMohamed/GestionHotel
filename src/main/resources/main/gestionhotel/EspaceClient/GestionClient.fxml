@@ -19,7 +19,7 @@
                 <TableColumn fx:id="prenom" prefWidth="88.0" text="PRENOM" />
                 <TableColumn fx:id="telephone" prefWidth="75.0" text="TELEPHONE" />
                 <TableColumn fx:id="email" prefWidth="75.0" text="EMAIL" />
-                <TableColumn fx:id="ADRESSE" prefWidth="103.0" text="ADRESSE" />
+                <TableColumn fx:id="adresse" prefWidth="103.0" text="ADRESSE" />
             </columns>
         </TableView>
         <GridPane layoutX="118.0" layoutY="36.0">
