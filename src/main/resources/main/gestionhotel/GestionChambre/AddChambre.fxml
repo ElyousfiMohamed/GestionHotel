@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.geometry.Insets?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="main.gestionhotel.GestionChambre.AddChambreController">
+   <children>
+      <Label layoutX="51.0" layoutY="61.0" text="Type" />
+      <Label layoutX="48.0" layoutY="123.0" text="Numéro chambre" />
+      <Label layoutX="48.0" layoutY="170.0" text="Description" />
+      <Label layoutX="48.0" layoutY="170.0" text="Disponible" />
+      <TextField fx:id="type" layoutX="191.0" layoutY="66.0" />
+      <TextField fx:id="numeroChambre" layoutX="191.0" layoutY="111.0" />
+      <TextField fx:id="descriptionChambre" layoutX="191.0" layoutY="166.0" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <RadioButton fx:id="dispoTrue" mnemonicParsing="false" selected="true" text="Oui">
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <toggleGroup>
+                  <ToggleGroup fx:id="disponible" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="dispoFalse" mnemonicParsing="false" text="Non" toggleGroup="$disponible">
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets left="5.0" right="20.0" />
+               </padding>
+            </RadioButton>
+         </children>
+      </HBox>
+      <Button layoutX="207.0" layoutY="255.0" mnemonicParsing="false" onAction="#ajouterChambre" text="Ajouter" />
+      <Button layoutX="340.0" layoutY="255.0" mnemonicParsing="false" onAction="#annulerChambre" text="Annuler" />
+   </children>
+</Pane>
