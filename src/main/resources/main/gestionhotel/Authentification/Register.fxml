@@ -30,13 +30,34 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="CIN :" GridPane.halignment="CENTER" />
-            <Label text="NOM :" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label text="PRENOM :" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Label text="TELEPHONE :" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Label text="EMAIL :" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Label text="FONCTION :" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-            <Label text="PASSWORD :" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Label text="CIN :">
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Label>
+            <Label text="NOM :" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Label>
+            <Label text="PRENOM :" GridPane.rowIndex="2">
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Label>
+            <Label text="TELEPHONE :" GridPane.rowIndex="3">
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Label>
+            <Label text="EMAIL :" GridPane.rowIndex="4">
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Label>
+            <Label text="FONCTION :" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Label>
+            <Label text="PASSWORD :" GridPane.rowIndex="5">
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Label>
             <TextField fx:id="cin" promptText="CIN" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="15.0" right="15.0" />

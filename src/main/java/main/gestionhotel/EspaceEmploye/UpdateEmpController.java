@@ -1,4 +1,4 @@
-package main.gestionhotel.Authentification;
+package main.gestionhotel.EspaceEmploye;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

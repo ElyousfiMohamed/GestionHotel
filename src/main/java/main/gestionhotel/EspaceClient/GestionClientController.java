@@ -52,9 +52,9 @@ public class GestionClientController implements Initializable {
         IMetierImpl.client = tableView.getItems().get(indice);
 
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("UpdateClt.fxml"));
-
-        Scene scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("UpdateClt.fxml"));
+        Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.setTitle("modifier client");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -66,17 +66,18 @@ public class GestionClientController implements Initializable {
                     tableView.getItems().clear();
                     IMetier metier = new IMetierImpl();
                     clients.addAll(metier.getAllClients());
-                    id.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    cin.setCellValueFactory(new PropertyValueFactory<>("cin"));
-                    nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-                    prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                    telephone.setCellValueFactory(new PropertyValueFactory<>("telephone"));
-                    email.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+                    id.setCellValueFactory(new PropertyValueFactory<>("id_cl"));
+                    cin.setCellValueFactory(new PropertyValueFactory<>("CIN_cl"));
+                    nom.setCellValueFactory(new PropertyValueFactory<>("nom_cl"));
+                    prenom.setCellValueFactory(new PropertyValueFactory<>("prenom_cl"));
+                    telephone.setCellValueFactory(new PropertyValueFactory<>("numtel_cl"));
+                    email.setCellValueFactory(new PropertyValueFactory<>("email_cl"));
+                    adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_cl"));
                     tableView.setItems(clients);
                   }
                 });
       } catch (Exception ex) {
+        ex.printStackTrace();
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText(ex.getMessage());
         alert.show();
@@ -99,6 +100,23 @@ public class GestionClientController implements Initializable {
     stage.setTitle("Nouveau client");
     stage.setScene(scene);
     stage.show();
+      stage.setOnCloseRequest(
+              new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent e) {
+                  tableView.getItems().clear();
+                  IMetier metier = new IMetierImpl();
+                  clients.addAll(metier.getAllClients());
+                  id.setCellValueFactory(new PropertyValueFactory<>("id_cl"));
+                  cin.setCellValueFactory(new PropertyValueFactory<>("CIN_cl"));
+                  nom.setCellValueFactory(new PropertyValueFactory<>("nom_cl"));
+                  prenom.setCellValueFactory(new PropertyValueFactory<>("prenom_cl"));
+                  telephone.setCellValueFactory(new PropertyValueFactory<>("numtel_cl"));
+                  email.setCellValueFactory(new PropertyValueFactory<>("email_cl"));
+                  adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_cl"));
+                  tableView.setItems(clients);
+                }
+              });
   } catch (Exception e) {
     e.printStackTrace();
   }}
@@ -134,15 +152,14 @@ public class GestionClientController implements Initializable {
   public void initialize(URL url, ResourceBundle resourceBundle) {
     // TODO
     IMetier metier = new IMetierImpl();
-    tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     clients.addAll(metier.getAllClients());
-    id.setCellValueFactory(new PropertyValueFactory<Client, Integer>("id"));
-    cin.setCellValueFactory(new PropertyValueFactory<Client, String>("cin"));
-    nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
-    prenom.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
-    telephone.setCellValueFactory(new PropertyValueFactory<Client, String>("telephone"));
-    email.setCellValueFactory(new PropertyValueFactory<Client, String>("email"));
-    adresse.setCellValueFactory(new PropertyValueFactory<Client, String>("adresse"));
+    id.setCellValueFactory(new PropertyValueFactory<Client, Integer>("id_cl"));
+    cin.setCellValueFactory(new PropertyValueFactory<Client, String>("CIN_cl"));
+    nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom_cl"));
+    prenom.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom_cl"));
+    telephone.setCellValueFactory(new PropertyValueFactory<Client, String>("numtel_cl"));
+    email.setCellValueFactory(new PropertyValueFactory<Client, String>("email_cl"));
+    adresse.setCellValueFactory(new PropertyValueFactory<Client, String>("adresse_cl"));
     tableView.setItems(clients);
   }
 }

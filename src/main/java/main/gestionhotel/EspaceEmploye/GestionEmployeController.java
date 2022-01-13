@@ -1,4 +1,4 @@
-package main.gestionhotel.Authentification;
+package main.gestionhotel.EspaceEmploye;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,7 +49,6 @@ public class GestionEmployeController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     // TODO
     IMetier metier = new IMetierImpl();
-    tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     employes.addAll(metier.getAllEmployes());
     id.setCellValueFactory(new PropertyValueFactory<Employe, Integer>("id"));
     cin.setCellValueFactory(new PropertyValueFactory<Employe, String>("cin"));

@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -11,9 +10,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="rootPane" prefHeight="256.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.gestionhotel.Authentification.LoginController">
+<AnchorPane fx:id="rootPane" prefHeight="218.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.gestionhotel.Authentification.LoginController">
    <children>
-      <GridPane layoutX="53.0" layoutY="33.0" prefHeight="132.0" prefWidth="405.0">
+      <GridPane layoutX="53.0" layoutY="14.0" prefHeight="132.0" prefWidth="405.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="128.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="267.0" />
@@ -23,8 +22,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Email :" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="Mot de passe :" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label text="Email :">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></Label>
+            <Label text="Mot de passe :" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></Label>
             <TextField fx:id="email" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
@@ -37,7 +42,7 @@
             </PasswordField>
          </children>
       </GridPane>
-      <GridPane layoutX="118.0" layoutY="196.0" prefHeight="30.0" prefWidth="274.0">
+      <GridPane layoutX="119.0" layoutY="159.0" prefHeight="30.0" prefWidth="274.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,6 +55,5 @@
             <Button mnemonicParsing="false" onAction="#annuler" text="Annuler" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
-      <Hyperlink layoutX="196.0" layoutY="154.0" onAction="#register" text="S'inscrire d'ici" />
    </children>
 </AnchorPane>

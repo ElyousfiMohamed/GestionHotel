@@ -19,5 +19,7 @@ module main.gestionhotel {
     opens main.gestionhotel.ClassesPersistants to javafx.base;
     exports main.gestionhotel.EspaceClient;
     opens main.gestionhotel.EspaceClient to javafx.fxml;
+    exports main.gestionhotel.EspaceEmploye;
+    opens main.gestionhotel.EspaceEmploye to javafx.fxml;
 
 }

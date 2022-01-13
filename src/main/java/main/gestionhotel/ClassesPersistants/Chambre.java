@@ -7,8 +7,14 @@ public class Chambre {
   private boolean dispo_chmbr;
   private Type_Chambre type_chambre;
 
-  public Chambre(int id_chmbr, int id_type, int num_chmbr, String desq_chmbr, boolean dispo_chmbr) {
+  public Chambre(int id_chmbr, int num_chmbr, String desq_chmbr, boolean dispo_chmbr) {
     this.id_chmbr = id_chmbr;
+    this.num_chmbr = num_chmbr;
+    this.desq_chmbr = desq_chmbr;
+    this.dispo_chmbr = dispo_chmbr;
+  }
+
+  public Chambre(int num_chmbr, String desq_chmbr, boolean dispo_chmbr) {
     this.num_chmbr = num_chmbr;
     this.desq_chmbr = desq_chmbr;
     this.dispo_chmbr = dispo_chmbr;

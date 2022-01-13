@@ -13,6 +13,13 @@ public class Type_Chambre {
     this.prix = prix;
   }
 
+  public Type_Chambre(String intitule, int capacité, float prix) {
+    this.intitule = intitule;
+    this.capacité = capacité;
+    this.prix = prix;
+  }
+
+
   public Type_Chambre() {}
 
   public int getId_type() {

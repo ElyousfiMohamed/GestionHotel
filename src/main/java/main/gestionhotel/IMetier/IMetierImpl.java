@@ -1,10 +1,7 @@
 package main.gestionhotel.IMetier;
 
 import javafx.scene.control.Alert;
-import main.gestionhotel.ClassesPersistants.Chambre;
-import main.gestionhotel.ClassesPersistants.Client;
-import main.gestionhotel.ClassesPersistants.Employe;
-import main.gestionhotel.ClassesPersistants.Reservation;
+import main.gestionhotel.ClassesPersistants.*;
 import main.gestionhotel.Database.SingletonConnexionDB;
 
 import java.security.MessageDigest;
@@ -18,6 +15,7 @@ public class IMetierImpl implements IMetier {
 
   private static MessageDigest md;
   public static Client client;
+  public static Type_Chambre type;
   public static Employe employe;
   public static Chambre chambre;
   public static Reservation reservation = new Reservation();
@@ -322,6 +320,25 @@ public class IMetierImpl implements IMetier {
   }
 
   // entite chambre
+  @Override
+  public List<Chambre> getAllChambres() {
+    List<Chambre> chambres = new ArrayList<>();
+    try {
+      Connection conn = SingletonConnexionDB.getConnection();
+      Statement pstn = conn.createStatement();
+      ResultSet rs = pstn.executeQuery("SELECT * FROM chambre");
+      while (rs.next()) {
+        Chambre c = new Chambre(rs.getInt(1), rs.getInt(3), rs.getString(4), rs.getBoolean(5));
+        chambres.add(c);
+      }
+    } catch (Exception e) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText(e.getMessage());
+      alert.show();
+    }
+    return chambres;
+  }
+
   public static void updateChambre() {
     Connection conn = SingletonConnexionDB.getConnection();
     try {
@@ -379,9 +396,7 @@ public class IMetierImpl implements IMetier {
       Statement pstn = conn.createStatement();
       ResultSet rs = pstn.executeQuery("SELECT * FROM chambre");
       while (rs.next()) {
-        Chambre p =
-            new Chambre(
-                rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getBoolean(5));
+        Chambre p = new Chambre(rs.getInt(1), rs.getInt(3), rs.getString(4), rs.getBoolean(5));
         if (p.isDispo_chmbr()) {
           chambres.add(p);
         }
@@ -416,11 +431,10 @@ public class IMetierImpl implements IMetier {
     try {
       Connection connx = SingletonConnexionDB.getConnection();
       Statement stm = connx.createStatement();
-      ResultSet rs = stm.executeQuery("SELECT * FROM chambre WHERE ID_C LIKE '%" + keyWord + "%'");
+      ResultSet rs =
+          stm.executeQuery("SELECT * FROM chambre WHERE NUM_CHAMBRE LIKE '%" + keyWord + "%'");
       while (rs.next()) {
-        Chambre p =
-            new Chambre(
-                rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getBoolean(5));
+        Chambre p = new Chambre(rs.getInt(1), rs.getInt(3), rs.getString(4), rs.getBoolean(5));
         chambres.add(p);
       }
     } catch (Exception ex) {
@@ -481,25 +495,27 @@ public class IMetierImpl implements IMetier {
               + "','"
               + p.getTotal_rsv()
               + "')");
-      ResultSet rs = pstn.executeQuery("SELECT ID_R FROM reservation WHERE NUMERO_RSV='"+p.getNum_res()+"'");
+      ResultSet rs =
+          pstn.executeQuery(
+              "SELECT ID_R FROM reservation WHERE NUMERO_RSV='" + p.getNum_res() + "'");
       rs.next();
       p.setId_res(rs.getInt("ID_R"));
 
-      for(Chambre c : p.getChambres()) {
+      for (Chambre c : p.getChambres()) {
         pstn.executeUpdate(
-                "INSERT INTO `concerner`(`ID_R`, `ID_C`) VALUES ('"
-                        + p.getId_res()
-                        + "','"
-                        + c.getId_chmbr()
-                        +"')");
+            "INSERT INTO `concerner`(`ID_R`, `ID_C`) VALUES ('"
+                + p.getId_res()
+                + "','"
+                + c.getId_chmbr()
+                + "')");
       }
 
       pstn.executeUpdate(
-              "INSERT INTO `reserver`(`ID_CL`, `ID_R`) VALUES ('"
-                      + p.getClient().getId_cl()
-                      + "','"
-                      + p.getId_res()
-                      +"')");
+          "INSERT INTO `reserver`(`ID_CL`, `ID_R`) VALUES ('"
+              + p.getClient().getId_cl()
+              + "','"
+              + p.getId_res()
+              + "')");
 
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setContentText("Reservation ajouté avec succés");
@@ -562,7 +578,7 @@ public class IMetierImpl implements IMetier {
       Connection connx = SingletonConnexionDB.getConnection();
       Statement stm = connx.createStatement();
       ResultSet rs =
-          stm.executeQuery("SELECT * FROM reservation WHERE ID_R LIKE '%" + keyWord + "%'");
+          stm.executeQuery("SELECT * FROM reservation WHERE NUMERO_RSV LIKE '%" + keyWord + "%'");
       while (rs.next()) {
         Reservation p =
             new Reservation(
@@ -581,5 +597,108 @@ public class IMetierImpl implements IMetier {
       alert.show();
     }
     return reservations;
+  }
+
+  @Override
+  public void addType(Type_Chambre p) {
+    Connection conn = SingletonConnexionDB.getConnection();
+    try {
+      Statement pstn = conn.createStatement();
+      pstn.executeUpdate(
+          "INSERT INTO `type_c`(`INTITULE`, `CAPACITE`, `PRIX`) VALUES ('"
+              + p.getIntitule()
+              + "','"
+              + p.getCapacité()
+              + "','"
+              + p.getPrix()
+              + "')");
+
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setContentText("Type ajouté avec succés");
+      alert.show();
+    } catch (Exception ex) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText(ex.getMessage());
+      alert.show();
+      ex.printStackTrace();
+    }
+  }
+
+  @Override
+  public List<Type_Chambre> getAllTypes() {
+    List<Type_Chambre> types = new ArrayList<>();
+    try {
+      Connection conn = SingletonConnexionDB.getConnection();
+      Statement pstn = conn.createStatement();
+      ResultSet rs = pstn.executeQuery("SELECT * FROM type_c");
+      while (rs.next()) {
+        Type_Chambre p = new Type_Chambre(rs.getString(1), rs.getInt(2), rs.getInt(3));
+        types.add(p);
+      }
+    } catch (Exception e) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText(e.getMessage());
+      alert.show();
+    }
+    return types;
+  }
+
+  @Override
+  public void delType(int id) {
+    try {
+      Connection conn = SingletonConnexionDB.getConnection();
+      Statement st = conn.createStatement();
+      st.executeUpdate("DELETE FROM type_c WHERE ID_T=" + id);
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setContentText("Type supprimé avec succés");
+      alert.show();
+    } catch (Exception e) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText(e.getMessage());
+      alert.show();
+    }
+  }
+
+  @Override
+  public List<Type_Chambre> searchType(String keyWord) {
+    List<Type_Chambre> types = new ArrayList<>();
+    try {
+      Connection connx = SingletonConnexionDB.getConnection();
+      Statement stm = connx.createStatement();
+      ResultSet rs =
+          stm.executeQuery("SELECT * FROM type_c WHERE INTITULE LIKE '%" + keyWord + "%'");
+      while (rs.next()) {
+        Type_Chambre p = new Type_Chambre(rs.getString(1), rs.getInt(2), rs.getFloat(3));
+        types.add(p);
+      }
+    } catch (Exception ex) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText(ex.getMessage());
+      alert.show();
+    }
+    return types;
+  }
+
+  public static void updateType() {
+    Connection conn = SingletonConnexionDB.getConnection();
+    try {
+      Statement pstn = conn.createStatement();
+      pstn.executeUpdate(
+          "UPDATE type_c SET "
+              + "INTITULE  = '"
+              + type.getIntitule()
+              + "',CAPACITE = '"
+              + type.getCapacité()
+              + "',PRIX = '"
+              + type.getPrix()
+              + "'");
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setContentText("Type modifié avec succés");
+      alert.show();
+    } catch (Exception e) {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setContentText(e.getMessage());
+      alert.show();
+    }
   }
 }
