@@ -75,6 +75,8 @@ public class SelectChambresController implements Initializable {
       alert.setContentText("Veuillez sélectionner un élément ");
       alert.show();
     }
+    Stage stage = (Stage) rootPane.getScene().getWindow();
+    stage.close();
   }
 
   @Override

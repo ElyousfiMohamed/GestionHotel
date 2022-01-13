@@ -14,10 +14,10 @@ import java.util.List;
 public class IMetierImpl implements IMetier {
 
   private static MessageDigest md;
-  public static Client client;
-  public static Type_Chambre type;
-  public static Employe employe;
-  public static Chambre chambre;
+  public static Client client = new Client();
+  public static Type_Chambre type = new Type_Chambre();
+  public static Employe employe = new Employe();
+  public static Chambre chambre = new Chambre();
   public static Reservation reservation = new Reservation();
 
   // entite Employe
@@ -632,10 +632,11 @@ public class IMetierImpl implements IMetier {
       Statement pstn = conn.createStatement();
       ResultSet rs = pstn.executeQuery("SELECT * FROM type_c");
       while (rs.next()) {
-        Type_Chambre p = new Type_Chambre(rs.getString(1), rs.getInt(2), rs.getInt(3));
+        Type_Chambre p = new Type_Chambre(rs.getInt(1), rs.getString(2), rs.getInt(3),rs.getFloat(4));
         types.add(p);
       }
     } catch (Exception e) {
+      e.printStackTrace();
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setContentText(e.getMessage());
       alert.show();
@@ -668,7 +669,7 @@ public class IMetierImpl implements IMetier {
       ResultSet rs =
           stm.executeQuery("SELECT * FROM type_c WHERE INTITULE LIKE '%" + keyWord + "%'");
       while (rs.next()) {
-        Type_Chambre p = new Type_Chambre(rs.getString(1), rs.getInt(2), rs.getFloat(3));
+        Type_Chambre p = new Type_Chambre(rs.getInt(1), rs.getString(2), rs.getInt(3),rs.getFloat(4));
         types.add(p);
       }
     } catch (Exception ex) {
@@ -691,7 +692,7 @@ public class IMetierImpl implements IMetier {
               + type.getCapacité()
               + "',PRIX = '"
               + type.getPrix()
-              + "'");
+              + "' WHERE ID_T = '" + type.getId_type()+"'");
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setContentText("Type modifié avec succés");
       alert.show();

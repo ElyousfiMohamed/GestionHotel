@@ -5,7 +5,7 @@ public class Chambre {
   private int num_chmbr;
   private String desq_chmbr;
   private boolean dispo_chmbr;
-  private Type_Chambre type_chambre;
+  private Type_Chambre type_chambre = new Type_Chambre();
 
   public Chambre(int id_chmbr, int num_chmbr, String desq_chmbr, boolean dispo_chmbr) {
     this.id_chmbr = id_chmbr;

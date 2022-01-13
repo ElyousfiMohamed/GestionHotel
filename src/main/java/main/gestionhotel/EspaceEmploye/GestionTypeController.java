@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
@@ -20,7 +21,10 @@ import main.gestionhotel.ClassesPersistants.Type_Chambre;
 import main.gestionhotel.IMetier.IMetier;
 import main.gestionhotel.IMetier.IMetierImpl;
 
-public class GestionTypeController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class GestionTypeController implements Initializable {
 
   @FXML private TableView<Type_Chambre> tableView = new TableView<>();
 
@@ -133,5 +137,16 @@ public class GestionTypeController {
       alert.setContentText("Veuillez sélectionner un élément ");
       alert.show();
     }
+  }
+
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    IMetier metier = new IMetierImpl();
+    types.addAll(metier.getAllTypes());
+    id.setCellValueFactory(new PropertyValueFactory<>("id_type"));
+    INTITULE.setCellValueFactory(new PropertyValueFactory<>("intitule"));
+    CAPACITE.setCellValueFactory(new PropertyValueFactory<>("capacité"));
+    PRIX.setCellValueFactory(new PropertyValueFactory<>("prix"));
+    tableView.setItems(types);
   }
 }
