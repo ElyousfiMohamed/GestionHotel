@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import main.gestionhotel.ClassesPersistants.Chambre;
+import main.gestionhotel.ClassesPersistants.Type_Chambre;
 import main.gestionhotel.IMetier.IMetier;
 import main.gestionhotel.IMetier.IMetierImpl;
 
@@ -35,6 +36,8 @@ public class GestionChambreController implements Initializable {
   @FXML private TableColumn<Chambre, String> desccmr;
 
   @FXML private TableColumn<Chambre, Boolean> dispocmr;
+
+  @FXML private TableColumn<Chambre, Type_Chambre> TYPE;
 
   @FXML private TextField rechercher;
   private ObservableList<Chambre> chambres = FXCollections.observableArrayList();
@@ -65,6 +68,7 @@ public class GestionChambreController implements Initializable {
                 numcmr.setCellValueFactory(new PropertyValueFactory<>("num_chmbr"));
                 desccmr.setCellValueFactory(new PropertyValueFactory<>("desq_chmbr"));
                 dispocmr.setCellValueFactory(new PropertyValueFactory<>("dispo_chmbr"));
+                TYPE.setCellValueFactory(new PropertyValueFactory<>("type_chambre"));
                 tableView.setItems(chambres);
               }
             });
@@ -93,19 +97,20 @@ public class GestionChambreController implements Initializable {
       stage.setScene(scene);
       stage.show();
       stage.setOnCloseRequest(
-              new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent e) {
-                  tableView.getItems().clear();
-                  IMetier metier = new IMetierImpl();
-                  chambres.addAll(metier.getAllChambres());
-                  id.setCellValueFactory(new PropertyValueFactory<>("id_chmbr"));
-                  numcmr.setCellValueFactory(new PropertyValueFactory<>("num_chmbr"));
-                  desccmr.setCellValueFactory(new PropertyValueFactory<>("desq_chmbr"));
-                  dispocmr.setCellValueFactory(new PropertyValueFactory<>("dispo_chmbr"));
-                  tableView.setItems(chambres);
-                }
-              });
+          new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+              tableView.getItems().clear();
+              IMetier metier = new IMetierImpl();
+              chambres.addAll(metier.getAllChambres());
+              id.setCellValueFactory(new PropertyValueFactory<>("id_chmbr"));
+              numcmr.setCellValueFactory(new PropertyValueFactory<>("num_chmbr"));
+              desccmr.setCellValueFactory(new PropertyValueFactory<>("desq_chmbr"));
+              dispocmr.setCellValueFactory(new PropertyValueFactory<>("dispo_chmbr"));                TYPE.setCellValueFactory(new PropertyValueFactory<>("type_chambre"));
+              TYPE.setCellValueFactory(new PropertyValueFactory<>("type_chambre"));
+              tableView.setItems(chambres);
+            }
+          });
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -148,6 +153,7 @@ public class GestionChambreController implements Initializable {
     numcmr.setCellValueFactory(new PropertyValueFactory<>("num_chmbr"));
     desccmr.setCellValueFactory(new PropertyValueFactory<>("desq_chmbr"));
     dispocmr.setCellValueFactory(new PropertyValueFactory<>("dispo_chmbr"));
+    TYPE.setCellValueFactory(new PropertyValueFactory<>("type_chambre"));
     tableView.setItems(chambres);
   }
 }

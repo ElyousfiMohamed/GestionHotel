@@ -327,11 +327,20 @@ public class IMetierImpl implements IMetier {
       Connection conn = SingletonConnexionDB.getConnection();
       Statement pstn = conn.createStatement();
       ResultSet rs = pstn.executeQuery("SELECT * FROM chambre");
+      ResultSet rss;
       while (rs.next()) {
         Chambre c = new Chambre(rs.getInt(1), rs.getInt(3), rs.getString(4), rs.getBoolean(5));
+        c.getType_chambre().setId_type(rs.getInt(2));
         chambres.add(c);
       }
+      for(Chambre c : chambres) {
+        rss = pstn.executeQuery("SELECT * FROM type_c WHERE ID_T = '"+c.getType_chambre().getId_type()+"'");
+        rss.next();
+        c.setType_chambre(new Type_Chambre(rss.getInt(1), rss.getString(2), rss.getInt(3),rss.getFloat(4)));
+        rss.close();
+      }
     } catch (Exception e) {
+      e.printStackTrace();
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setContentText(e.getMessage());
       alert.show();
@@ -343,6 +352,7 @@ public class IMetierImpl implements IMetier {
     Connection conn = SingletonConnexionDB.getConnection();
     try {
       Statement pstn = conn.createStatement();
+      int i = chambre.isDispo_chmbr() ? 1 : 0;
       pstn.executeUpdate(
           "UPDATE chambre SET "
               + "NUM_CHAMBRE = '"
@@ -350,8 +360,8 @@ public class IMetierImpl implements IMetier {
               + "',DESC_CHAMBRE = '"
               + chambre.getDesq_chmbr()
               + "',DISPO = '"
-              + chambre.isDispo_chmbr()
-              + "' WHERE ID_EMP = "
+              + i
+              + "' WHERE ID_C = "
               + chambre.getId_chmbr());
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setContentText("Chambre modifié avec succés");
@@ -368,15 +378,16 @@ public class IMetierImpl implements IMetier {
     Connection conn = SingletonConnexionDB.getConnection();
     try {
       Statement pstn = conn.createStatement();
+      int i= p.isDispo_chmbr() ? 1 : 0;
       pstn.executeUpdate(
-          "INSERT INTO `chambre`(`ID_C`, `NUM_CHAMBRE`, `DESC_CHAMBRE`, `DISPO`) VALUES ('"
-              + p.getId_chmbr()
+          "INSERT INTO `chambre`(`ID_T`, `NUM_CHAMBRE`, `DESC_CHAMBRE`, `DISPO`) VALUES ('"
+              + chambre.getType_chambre().getId_type()
               + "','"
               + p.getNum_chmbr()
               + "','"
               + p.getDesq_chmbr()
               + "','"
-              + p.isDispo_chmbr()
+              + i
               + "')");
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setContentText("Chambre ajouté avec succés");
@@ -464,8 +475,8 @@ public class IMetierImpl implements IMetier {
               + reservation.getDate_sort()
               + "',TOTAL_RSV = '"
               + reservation.getTotal_rsv()
-              + "' WHERE ID_EMP = "
-              + chambre.getId_chmbr());
+              + "' WHERE ID_R = "
+              + reservation.getId_res());
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setContentText("Reservation modifié avec succés");
       alert.show();
@@ -534,7 +545,7 @@ public class IMetierImpl implements IMetier {
     try {
       Connection conn = SingletonConnexionDB.getConnection();
       Statement pstn = conn.createStatement();
-      ResultSet rs = pstn.executeQuery("SELECT * FROM client");
+      ResultSet rs = pstn.executeQuery("SELECT * FROM reservation");
       while (rs.next()) {
         Reservation p =
             new Reservation(
@@ -545,6 +556,13 @@ public class IMetierImpl implements IMetier {
                 rs.getDate(5),
                 rs.getDate(6),
                 rs.getFloat(7));
+
+        /*
+        *
+        *   GETTING RELATED CLIENT AND CHAMBRES
+        *
+        * */
+
         reservations.add(p);
       }
     } catch (Exception e) {

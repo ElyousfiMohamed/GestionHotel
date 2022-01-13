@@ -33,12 +33,13 @@ public class NouveauChambreController {
     @FXML
     void Nouveau(ActionEvent event) {
         try {
+            Boolean b = ((RadioButton) this.DISPONIBILITE.getSelectedToggle()).getText().equals("OUI");
             IMetier metier = new IMetierImpl();
             Chambre c =
                     new Chambre(
                             Integer.parseInt(this.numCbr.getText()),
                             this.description.getText(),
-                            Boolean.parseBoolean(((RadioButton) this.DISPONIBILITE.getSelectedToggle()).getText()));
+                            b);
             metier.addChambre(c);
         } catch (Exception ex) {
             ex.printStackTrace();

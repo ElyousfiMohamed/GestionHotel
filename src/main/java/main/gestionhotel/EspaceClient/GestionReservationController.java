@@ -107,6 +107,24 @@ public class GestionReservationController implements Initializable {
       stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.setScene(scene);
       stage.show();
+      stage.setOnCloseRequest(
+              new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent e) {
+                  tableView.getItems().clear();
+                  IMetier metier = new IMetierImpl();
+
+                  reservations.addAll(metier.getAllReservation());
+                  ID.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("id_res"));
+                  NUM_RSV.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("num_res"));
+                  NBR_PRS.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("num_pers"));
+                  NBR_CHBR.setCellValueFactory(new PropertyValueFactory<Reservation, Integer>("num_chbr"));
+                  DATE_ARIV.setCellValueFactory(new PropertyValueFactory<Reservation, Date>("date_arv"));
+                  DATE_SORT.setCellValueFactory(new PropertyValueFactory<Reservation, Date>("date_sort"));
+                  TOTAL_RSV.setCellValueFactory(new PropertyValueFactory<Reservation, Float>("total_rsv"));
+                  tableView.setItems(reservations);
+                }
+              });
     } catch (Exception e) {
       e.printStackTrace();
     }

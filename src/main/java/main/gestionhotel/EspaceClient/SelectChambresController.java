@@ -84,12 +84,13 @@ public class SelectChambresController implements Initializable {
     // TODO
     IMetier metier = new IMetierImpl();
     tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    chambres.addAll(metier.getAllChambreDispo());
+    chambres.addAll(metier.getAllChambres());
     id.setCellValueFactory(new PropertyValueFactory<Chambre, Integer>("id_chmbr"));
     TYPE.setCellValueFactory(new PropertyValueFactory<Chambre, Type_Chambre>("type_chambre"));
     NUM_CH.setCellValueFactory(new PropertyValueFactory<Chambre, Integer>("num_chmbr"));
     DESC_CHAMBRE.setCellValueFactory(new PropertyValueFactory<Chambre, String>("desq_chmbr"));
     DISPONIBILITE.setCellValueFactory(new PropertyValueFactory<Chambre, Boolean>("dispo_chmbr"));
+    TYPE.setCellValueFactory(new PropertyValueFactory<Chambre, Type_Chambre>("type_chambre"));
     tableView.setItems(chambres);
   }
 }

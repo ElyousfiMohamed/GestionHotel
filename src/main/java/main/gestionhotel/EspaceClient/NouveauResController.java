@@ -48,7 +48,7 @@ public class NouveauResController {
       IMetier metier = new IMetierImpl();
 
       java.sql.Date date1 = Date.valueOf(DATE_ARRV.valueProperty().get());
-      java.sql.Date date2 = Date.valueOf(DATE_ARRV.valueProperty().get());
+      java.sql.Date date2 = Date.valueOf(DATE_SORT.valueProperty().get());
 
       IMetierImpl.reservation.setNum_res(Integer.parseInt(this.NUM_RSV.getText()));
       IMetierImpl.reservation.setNum_pers(Integer.parseInt(this.NBR_PRS.getText()));

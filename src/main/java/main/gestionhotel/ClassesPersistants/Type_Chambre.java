@@ -56,13 +56,6 @@ public class Type_Chambre {
 
   @Override
   public String toString() {
-    return "intitule='"
-        + intitule
-        + '\''
-        + ", capacité="
-        + capacité
-        + ", prix="
-        + prix
-        + '}';
+    return intitule;
   }
 }
