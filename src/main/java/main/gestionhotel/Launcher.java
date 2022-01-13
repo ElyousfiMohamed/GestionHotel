@@ -15,7 +15,7 @@ public class Launcher extends Application {
         //loader.setLocation(getClass().getResource("EspaceEmploye/GestionChambre.fxml"));
         //loader.setLocation(getClass().getResource("EspaceEmploye/GestionType.fxml"));
         //loader.setLocation(getClass().getResource("EspaceClient/GestionClient.fxml"));
-        loader.setLocation(getClass().getResource("EspaceClient/GestionReservation.fxml"));
+        loader.setLocation(getClass().getResource("Authentification/Login.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setTitle("Se connecter");
         stage.setScene(scene);
