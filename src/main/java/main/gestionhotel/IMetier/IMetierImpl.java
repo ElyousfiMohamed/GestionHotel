@@ -15,6 +15,7 @@ public class IMetierImpl implements IMetier {
 
   private static MessageDigest md;
   public static Client client = new Client();
+  public static String ROLE = "";
   public static Type_Chambre type = new Type_Chambre();
   public static Employe employe = new Employe();
   public static Chambre chambre = new Chambre();
@@ -44,10 +45,12 @@ public class IMetierImpl implements IMetier {
       Statement pstn = conn.createStatement();
       ResultSet rs =
           pstn.executeQuery(
-              "SELECT EMAIL_EMP,PASSWORD FROM employe WHERE EMAIL_EMP='" + email + "'");
+              "SELECT EMAIL_EMP,PASSWORD,FONCTION FROM employe WHERE EMAIL_EMP='" + email + "'");
       while (rs.next()) {
-        if (rs.getString("EMAIL_EMP").equals(email)
-            && rs.getString("PASSWORD").equals(cryptWithMD5(password))) return true;
+        if (rs.getString("EMAIL_EMP").equals(email) && rs.getString("PASSWORD").equals(cryptWithMD5(password))) {
+          ROLE=rs.getString("FONCTION");
+          return true;
+        }
       }
     } catch (Exception e) {
       return false;
@@ -333,10 +336,13 @@ public class IMetierImpl implements IMetier {
         c.getType_chambre().setId_type(rs.getInt(2));
         chambres.add(c);
       }
-      for(Chambre c : chambres) {
-        rss = pstn.executeQuery("SELECT * FROM type_c WHERE ID_T = '"+c.getType_chambre().getId_type()+"'");
+      for (Chambre c : chambres) {
+        rss =
+            pstn.executeQuery(
+                "SELECT * FROM type_c WHERE ID_T = '" + c.getType_chambre().getId_type() + "'");
         rss.next();
-        c.setType_chambre(new Type_Chambre(rss.getInt(1), rss.getString(2), rss.getInt(3),rss.getFloat(4)));
+        c.setType_chambre(
+            new Type_Chambre(rss.getInt(1), rss.getString(2), rss.getInt(3), rss.getFloat(4)));
         rss.close();
       }
     } catch (Exception e) {
@@ -378,7 +384,7 @@ public class IMetierImpl implements IMetier {
     Connection conn = SingletonConnexionDB.getConnection();
     try {
       Statement pstn = conn.createStatement();
-      int i= p.isDispo_chmbr() ? 1 : 0;
+      int i = p.isDispo_chmbr() ? 1 : 0;
       pstn.executeUpdate(
           "INSERT INTO `chambre`(`ID_T`, `NUM_CHAMBRE`, `DESC_CHAMBRE`, `DISPO`) VALUES ('"
               + chambre.getType_chambre().getId_type()
@@ -558,10 +564,10 @@ public class IMetierImpl implements IMetier {
                 rs.getFloat(7));
 
         /*
-        *
-        *   GETTING RELATED CLIENT AND CHAMBRES
-        *
-        * */
+         *
+         *   GETTING RELATED CLIENT AND CHAMBRES
+         *
+         * */
 
         reservations.add(p);
       }
@@ -650,7 +656,8 @@ public class IMetierImpl implements IMetier {
       Statement pstn = conn.createStatement();
       ResultSet rs = pstn.executeQuery("SELECT * FROM type_c");
       while (rs.next()) {
-        Type_Chambre p = new Type_Chambre(rs.getInt(1), rs.getString(2), rs.getInt(3),rs.getFloat(4));
+        Type_Chambre p =
+            new Type_Chambre(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getFloat(4));
         types.add(p);
       }
     } catch (Exception e) {
@@ -687,7 +694,8 @@ public class IMetierImpl implements IMetier {
       ResultSet rs =
           stm.executeQuery("SELECT * FROM type_c WHERE INTITULE LIKE '%" + keyWord + "%'");
       while (rs.next()) {
-        Type_Chambre p = new Type_Chambre(rs.getInt(1), rs.getString(2), rs.getInt(3),rs.getFloat(4));
+        Type_Chambre p =
+            new Type_Chambre(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getFloat(4));
         types.add(p);
       }
     } catch (Exception ex) {
@@ -710,7 +718,9 @@ public class IMetierImpl implements IMetier {
               + type.getCapacité()
               + "',PRIX = '"
               + type.getPrix()
-              + "' WHERE ID_T = '" + type.getId_type()+"'");
+              + "' WHERE ID_T = '"
+              + type.getId_type()
+              + "'");
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setContentText("Type modifié avec succés");
       alert.show();

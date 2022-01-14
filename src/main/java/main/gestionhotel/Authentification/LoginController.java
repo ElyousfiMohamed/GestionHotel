@@ -43,6 +43,8 @@ public class LoginController {
       }catch (Exception e){
         e.printStackTrace();
       }
+      Stage stage = (Stage) rootPane.getScene().getWindow();
+      stage.close();
     } else {
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setContentText("Not Connected");

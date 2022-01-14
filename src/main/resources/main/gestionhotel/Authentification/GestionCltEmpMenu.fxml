@@ -1,34 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.gestionhotel.Authentification.GestionCltEmpMenuController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.gestionhotel.Authentification.GestionCltEmpMenuController">
    <children>
-      <GridPane layoutX="89.0" layoutY="67.0" prefHeight="251.0" prefWidth="422.0">
+      <GridPane layoutX="89.0" layoutY="39.0" prefHeight="251.0" prefWidth="422.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="213.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#ClientMenuDisplay" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                <image>
-                  <Image url="@images/employee%20(1).png" />
+                  <Image url="@images/client%20(1).png" />
                </image>
+               <GridPane.margin>
+                  <Insets top="40.0" />
+               </GridPane.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#EmployeMenuDisplay" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <ImageView fitHeight="115.0" fitWidth="110.0" onMouseClicked="#EmployeMenuDisplay" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <image>
-                  <Image url="@images/employee%20(2).png" />
+                  <Image url="@images/employee.png" />
                </image>
+               <GridPane.margin>
+                  <Insets top="40.0" />
+               </GridPane.margin>
             </ImageView>
+            <Label text="GESTION CLIENT" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label text="GESTION EMPLOYE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>
