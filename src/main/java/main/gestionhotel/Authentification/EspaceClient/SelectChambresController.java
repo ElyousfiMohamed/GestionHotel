@@ -89,7 +89,6 @@ public class SelectChambresController implements Initializable {
     NUM_CH.setCellValueFactory(new PropertyValueFactory<Chambre, Integer>("num_chmbr"));
     DESC_CHAMBRE.setCellValueFactory(new PropertyValueFactory<Chambre, String>("desq_chmbr"));
     DISPONIBILITE.setCellValueFactory(new PropertyValueFactory<Chambre, Boolean>("dispo_chmbr"));
-    TYPE.setCellValueFactory(new PropertyValueFactory<Chambre, Type_Chambre>("type_chambre"));
     tableView.setItems(chambres);
   }
 }

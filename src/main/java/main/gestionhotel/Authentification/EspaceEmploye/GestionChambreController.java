@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -56,6 +57,7 @@ public class GestionChambreController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("modifier chambre");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
         stage.show();
         stage.setOnCloseRequest(
             new EventHandler<WindowEvent>() {
@@ -64,11 +66,6 @@ public class GestionChambreController implements Initializable {
                 tableView.getItems().clear();
                 IMetier metier = new IMetierImpl();
                 chambres.addAll(metier.getAllChambres());
-                id.setCellValueFactory(new PropertyValueFactory<>("id_chmbr"));
-                numcmr.setCellValueFactory(new PropertyValueFactory<>("num_chmbr"));
-                desccmr.setCellValueFactory(new PropertyValueFactory<>("desq_chmbr"));
-                dispocmr.setCellValueFactory(new PropertyValueFactory<>("dispo_chmbr"));
-                TYPE.setCellValueFactory(new PropertyValueFactory<>("type_chambre"));
                 tableView.setItems(chambres);
               }
             });
@@ -95,6 +92,7 @@ public class GestionChambreController implements Initializable {
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle("Nouvelle chambre");
       stage.setScene(scene);
+      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.show();
       stage.setOnCloseRequest(
           new EventHandler<WindowEvent>() {

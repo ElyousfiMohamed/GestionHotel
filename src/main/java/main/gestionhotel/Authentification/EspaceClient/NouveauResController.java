@@ -59,6 +59,10 @@ public class NouveauResController {
       *
       * */
       metier.addReservation(IMetierImpl.reservation);
+      this.NUM_RSV.clear();
+      this.NBR_PRS.clear();
+      this.DATE_ARRV.valueProperty().set(null);
+      this.DATE_SORT.valueProperty().set(null);
     } catch (Exception ex) {
       ex.printStackTrace();
     }
@@ -73,8 +77,8 @@ public class NouveauResController {
       Scene scene = new Scene(loader.load());
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle("Selectioner les chambres");
-      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.setScene(scene);
+      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.show();
     } catch (Exception e) {
       e.printStackTrace();
@@ -90,8 +94,8 @@ public class NouveauResController {
       Scene scene = new Scene(loader.load());
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle("Selectioner le client");
-      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.setScene(scene);
+      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.show();
     } catch (Exception e) {
       e.printStackTrace();

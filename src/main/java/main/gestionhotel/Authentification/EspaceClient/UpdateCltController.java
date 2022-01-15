@@ -48,6 +48,8 @@ public class UpdateCltController implements Initializable {
             client.setEmail_cl(this.email.getText());
             client.setAdresse_cl(this.adresse.getText());
             IMetierImpl.updateClient(client);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.close();
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText(ex.getMessage());

@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -53,6 +54,7 @@ public class GestionTypeController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("modifier type");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
         stage.show();
         stage.setOnCloseRequest(
             new EventHandler<WindowEvent>() {
@@ -61,10 +63,6 @@ public class GestionTypeController implements Initializable {
                 tableView.getItems().clear();
                 IMetier metier = new IMetierImpl();
                 types.addAll(metier.getAllTypes());
-                id.setCellValueFactory(new PropertyValueFactory<>("id_type"));
-                INTITULE.setCellValueFactory(new PropertyValueFactory<>("intitule"));
-                CAPACITE.setCellValueFactory(new PropertyValueFactory<>("capacité"));
-                PRIX.setCellValueFactory(new PropertyValueFactory<>("prix"));
                 tableView.setItems(types);
               }
             });
@@ -91,6 +89,7 @@ public class GestionTypeController implements Initializable {
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle("Nouveau type");
       stage.setScene(scene);
+      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.show();
       stage.setOnCloseRequest(
           new EventHandler<WindowEvent>() {

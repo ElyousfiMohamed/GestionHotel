@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -41,6 +42,8 @@ public class UpdateChambreController implements Initializable {
             IMetierImpl.chambre.setDesq_chmbr(this.description.getText());
             IMetierImpl.chambre.setDispo_chmbr(b);
             IMetierImpl.updateChambre();
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.close();
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText(ex.getMessage());
@@ -64,6 +67,7 @@ public class UpdateChambreController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Selectioner le type de chambre");
             stage.setScene(scene);
+            stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

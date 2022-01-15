@@ -585,6 +585,8 @@ public class IMetierImpl implements IMetier {
       Connection conn = SingletonConnexionDB.getConnection();
       Statement st = conn.createStatement();
       st.executeUpdate("DELETE FROM reservation WHERE ID_R=" + id);
+      st.executeUpdate("DELETE FROM concerner WHERE ID_R=" + id);
+      st.executeUpdate("DELETE FROM reserver WHERE ID_R=" + id);
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setContentText("reservation supprimé avec succés");
       alert.show();

@@ -44,6 +44,12 @@ public class NouveauCltController {
               this.email.getText(),
               this.adresse.getText());
       metier.addClient(c);
+      this.cin.clear();
+      this.nom.clear();
+      this.prenom.clear();
+      this.telephone.clear();
+      this.email.clear();
+      this.adresse.clear();
     } catch (Exception ex) {
       ex.printStackTrace();
     }

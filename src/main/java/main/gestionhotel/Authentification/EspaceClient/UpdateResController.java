@@ -58,7 +58,6 @@ public class UpdateResController implements Initializable {
 
             IMetierImpl.reservation.setNum_res(Integer.parseInt(this.NUM_RSV.getText()));
             IMetierImpl.reservation.setNum_pers(Integer.parseInt(this.NBR_PRS.getText()));
-            IMetierImpl.reservation.setNum_chbr(IMetierImpl.reservation.getChambres().size());
             IMetierImpl.reservation.setDate_arv(date1);
             IMetierImpl.reservation.setDate_sort(date2);
 
@@ -70,6 +69,10 @@ public class UpdateResController implements Initializable {
              * */
 
             IMetierImpl.updateReservation();
+            GestionReservationController.reservations.clear();
+            GestionReservationController.reservations.addAll(metier.getAllReservation());
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.close();
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText(ex.getMessage());

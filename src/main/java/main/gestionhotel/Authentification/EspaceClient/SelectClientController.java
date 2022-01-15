@@ -3,6 +3,7 @@ package main.gestionhotel.Authentification.EspaceClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import main.gestionhotel.ClassesPersistants.Client;
 import main.gestionhotel.IMetier.IMetier;
 import main.gestionhotel.IMetier.IMetierImpl;
@@ -56,13 +58,30 @@ public class SelectClientController implements Initializable {
     try {
       Stage stage = new Stage();
       FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("NouveauClient.fxml"));
+      loader.setLocation(getClass().getResource("NouveauClt.fxml"));
       Scene scene = new Scene(loader.load());
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle("Ajouter un client");
-      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.setScene(scene);
+      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.show();
+      stage.setOnCloseRequest(
+              new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent e) {
+                  tableView.getItems().clear();
+                  IMetier metier = new IMetierImpl();
+                  clients.addAll(metier.getAllClients());
+                  id.setCellValueFactory(new PropertyValueFactory<>("id_cl"));
+                  cin.setCellValueFactory(new PropertyValueFactory<>("CIN_cl"));
+                  nom.setCellValueFactory(new PropertyValueFactory<>("nom_cl"));
+                  prenom.setCellValueFactory(new PropertyValueFactory<>("prenom_cl"));
+                  telephone.setCellValueFactory(new PropertyValueFactory<>("numtel_cl"));
+                  email.setCellValueFactory(new PropertyValueFactory<>("email_cl"));
+                  adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_cl"));
+                  tableView.setItems(clients);
+                }
+              });
     } catch (Exception e) {
       e.printStackTrace();
     }

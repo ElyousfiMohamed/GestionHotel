@@ -33,6 +33,9 @@ public class NouveauTypeController {
                             Integer.parseInt(this.CAPACITE.getText()),
                             Float.parseFloat(this.PRIX.getText()));
             metier.addType(c);
+            this.INTITULE.clear();
+            this.CAPACITE.clear();
+            this.PRIX.clear();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

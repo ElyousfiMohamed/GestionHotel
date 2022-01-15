@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -39,6 +40,8 @@ public class NouveauChambreController {
                             this.description.getText(),
                             b);
             metier.addChambre(c);
+            this.numCbr.clear();
+            this.description.clear();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -60,11 +63,10 @@ public class NouveauChambreController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Selectioner le type de chambre");
             stage.setScene(scene);
+            stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
 }

@@ -114,8 +114,8 @@ public class GestionEmployeController implements Initializable {
       Scene scene = new Scene(loader.load());
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle("Nouveau employé");
-      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.setScene(scene);
+      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.show();
       stage.setOnCloseRequest(
               new EventHandler<WindowEvent>() {
@@ -124,13 +124,6 @@ public class GestionEmployeController implements Initializable {
                   tableView.getItems().clear();
                   IMetier metier = new IMetierImpl();
                   employes.addAll(metier.getAllEmployes());
-                  id.setCellValueFactory(new PropertyValueFactory<>("id"));
-                  cin.setCellValueFactory(new PropertyValueFactory<>("cin"));
-                  nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-                  prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                  telephone.setCellValueFactory(new PropertyValueFactory<>("telephone"));
-                  email.setCellValueFactory(new PropertyValueFactory<>("email"));
-                  fonction.setCellValueFactory(new PropertyValueFactory<>("fonction"));
                   tableView.setItems(employes);
                 }
               });

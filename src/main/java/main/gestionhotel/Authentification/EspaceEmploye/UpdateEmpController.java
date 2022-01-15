@@ -52,6 +52,8 @@ public class UpdateEmpController implements Initializable {
       IMetierImpl.employe.setEmail(this.email.getText());
       IMetierImpl.employe.setFonction(((RadioButton) this.fonction.getSelectedToggle()).getText());
       IMetierImpl.updateEmploye();
+      Stage stage = (Stage) rootPane.getScene().getWindow();
+      stage.close();
     } catch (Exception ex) {
       Alert alert = new Alert(Alert.AlertType.WARNING);
       alert.setContentText(ex.getMessage());

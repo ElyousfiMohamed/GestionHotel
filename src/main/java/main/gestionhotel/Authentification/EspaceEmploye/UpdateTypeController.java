@@ -35,6 +35,8 @@ public class UpdateTypeController implements Initializable {
             IMetierImpl.type.setCapacité(Integer.parseInt(this.CAPACITE.getText()));
             IMetierImpl.type.setPrix(Float.parseFloat(this.PRIX.getText()));;
             IMetierImpl.updateType();
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.close();
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText(ex.getMessage());

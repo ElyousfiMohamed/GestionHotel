@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class GestionReservationController implements Initializable {
 
-  private ObservableList<Reservation> reservations = FXCollections.observableArrayList();
+  protected static ObservableList<Reservation> reservations = FXCollections.observableArrayList();
 
   @FXML private TableView<Reservation> tableView = new TableView<>();
 
@@ -72,13 +72,6 @@ public class GestionReservationController implements Initializable {
                 tableView.getItems().clear();
                 IMetier metier = new IMetierImpl();
                 reservations.addAll(metier.getAllReservation());
-                ID.setCellValueFactory(new PropertyValueFactory<>("id_res"));
-                NUM_RSV.setCellValueFactory(new PropertyValueFactory<>("num_res"));
-                NBR_PRS.setCellValueFactory(new PropertyValueFactory<>("num_pers"));
-                NBR_CHBR.setCellValueFactory(new PropertyValueFactory<>("num_chbr"));
-                DATE_ARIV.setCellValueFactory(new PropertyValueFactory<>("date_arv"));
-                DATE_SORT.setCellValueFactory(new PropertyValueFactory<>("date_sort"));
-                TOTAL_RSV.setCellValueFactory(new PropertyValueFactory<>("total_rsv"));
                 tableView.setItems(reservations);
               }
             });
@@ -103,8 +96,8 @@ public class GestionReservationController implements Initializable {
       Scene scene = new Scene(loader.load());
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle("Nouveau reservation");
-      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.setScene(scene);
+      stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
       stage.show();
       stage.setOnCloseRequest(
               new EventHandler<WindowEvent>() {

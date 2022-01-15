@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -65,13 +66,6 @@ public class GestionClientController implements Initializable {
                     tableView.getItems().clear();
                     IMetier metier = new IMetierImpl();
                     clients.addAll(metier.getAllClients());
-                    id.setCellValueFactory(new PropertyValueFactory<>("id_cl"));
-                    cin.setCellValueFactory(new PropertyValueFactory<>("CIN_cl"));
-                    nom.setCellValueFactory(new PropertyValueFactory<>("nom_cl"));
-                    prenom.setCellValueFactory(new PropertyValueFactory<>("prenom_cl"));
-                    telephone.setCellValueFactory(new PropertyValueFactory<>("numtel_cl"));
-                    email.setCellValueFactory(new PropertyValueFactory<>("email_cl"));
-                    adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_cl"));
                     tableView.setItems(clients);
                   }
                 });
@@ -98,6 +92,7 @@ public class GestionClientController implements Initializable {
     stage.initModality(Modality.APPLICATION_MODAL);
     stage.setTitle("Nouveau client");
     stage.setScene(scene);
+    stage.getIcons().add(new Image("https://img.icons8.com/emoji/344/hotel-emoji.png"));
     stage.show();
       stage.setOnCloseRequest(
               new EventHandler<WindowEvent>() {
