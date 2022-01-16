@@ -562,15 +562,14 @@ public class IMetierImpl implements IMetier {
                 rs.getDate(5),
                 rs.getDate(6),
                 rs.getFloat(7));
-
         /*
          *
          *   GETTING RELATED CLIENT AND CHAMBRES
          *
          * */
-
         reservations.add(p);
       }
+      return reservations;
     } catch (Exception e) {
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setContentText(e.getMessage());

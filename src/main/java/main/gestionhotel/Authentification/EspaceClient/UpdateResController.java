@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import main.gestionhotel.ClassesPersistants.Chambre;
 import main.gestionhotel.IMetier.IMetier;
 import main.gestionhotel.IMetier.IMetierImpl;
 
@@ -61,12 +62,12 @@ public class UpdateResController implements Initializable {
             IMetierImpl.reservation.setDate_arv(date1);
             IMetierImpl.reservation.setDate_sort(date2);
 
-            //calcul de prix total a ajotuer ici :
-            /*
-             *
-             *   CALCUL PRIX TOTAL ICIIIIII
-             *
-             * */
+            float totalTemp = 0;
+            for(Chambre c : IMetierImpl.reservation.getChambres()) {
+                totalTemp = totalTemp + c.getType_chambre().getPrix();
+            }
+            System.out.println(totalTemp);
+            IMetierImpl.reservation.setTotal_rsv(totalTemp);
 
             IMetierImpl.updateReservation();
             GestionReservationController.reservations.clear();

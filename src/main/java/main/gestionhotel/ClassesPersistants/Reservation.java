@@ -45,6 +45,7 @@ public class Reservation {
     this.num_chbr = num_chbr;
     this.date_arv = date_arv;
     this.date_sort = date_sort;
+    this.total_rsv = total_rsv;
   }
 
   public Reservation(
