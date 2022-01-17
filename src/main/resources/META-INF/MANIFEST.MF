@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Main-Class: main.gestionhotel.Launcher
+Class-Path: javafx-controls-15.0.1-win.jar tilesfx-11.48.jar javafx-web-
+ 15.0.1.jar javafaker-1.0.2.jar mysql-connector-java-8.0.27.jar javafx-b
+ ase-15.0.1.jar controlsfx-11.1.0.jar annotations-23.0.0.jar javafx-grap
+ hics-15.0.1.jar ikonli-javafx-12.2.0.jar javafx-fxml-15.0.1-win.jar boo
+ tstrapfx-core-0.4.0.jar javafx-media-15.0.1.jar ikonli-core-12.2.0.jar 
+ formsfx-core-11.3.2.jar src.zip jrt-fs.jar javafx-media-15.0.1-win.jar 
+ validatorfx-0.1.13.jar javafx-graphics-15.0.1-win.jar javafx-fxml-15.0.
+ 1.jar javafx-web-15.0.1-win.jar javafx-base-15.0.1-win.jar javafx-contr
+ ols-15.0.1.jar
+
